@@ -11,9 +11,9 @@ I,Age,Receptionist
 J,Gender,Receptionist
 K,Address: Name of (Village/Locality),Receptionist
 L,Contact Number,Receptionist
-M,Chief complaints,Staff Nurse (SN)
-N,Provisional diagnosis,Staff Nurse (SN)
-O,Date of onset of Illness,Staff Nurse (SN)
+M,Chief complaints,Medical Officer (MO)
+N,Provisional diagnosis,Medical Officer (MO)
+O,Date of onset of Illness,Medical Officer (MO)
 P,Service Availed,Staff Nurse (SN)
 Q,Height,Staff Nurse (SN)
 R,Weight,Staff Nurse (SN)
