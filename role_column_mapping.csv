@@ -1,0 +1,38 @@
+Column,Field Name,Role
+A,Date (DD/MM/YY),Receptionist
+B,Time of Registration,Receptionist
+C,Sl No,Receptionist
+D,OPD Registration Number,Receptionist
+E,Patient ABHA ID number,Receptionist
+F,Name of the head of the family,Receptionist
+G,Name of the patient,Receptionist
+H,Date of birth,Receptionist
+I,Age,Receptionist
+J,Gender,Receptionist
+K,Address: Name of (Village/Locality),Receptionist
+L,Contact Number,Receptionist
+M,Chief complaints,Staff Nurse (SN)
+N,Provisional diagnosis,Staff Nurse (SN)
+O,Date of onset of Illness,Staff Nurse (SN)
+P,Service Availed,Staff Nurse (SN)
+Q,Height,Staff Nurse (SN)
+R,Weight,Staff Nurse (SN)
+S,Blood Pressure,Staff Nurse (SN)
+T,Blood Sugar,Staff Nurse (SN)
+U,Breast Cancer,Staff Nurse (SN)
+V,Cervical Cancer,Staff Nurse (SN)
+W,Oral Cancer,Staff Nurse (SN)
+X,TB Symptomatic Screening,Staff Nurse (SN)
+Y,Any diagnostic tests advised (Yes/No),Medical Officer (MO)
+Z,Test conducted In-House (IH) or Referred (RF),Medical Officer (MO)
+AA,Type of sample referred/ collected for testing,Medical Officer (MO)
+AB,Findings/Investigation (Mention the category of case wherever applicable),Medical Officer (MO)
+AC,Consultation Starting time,Medical Officer (MO)
+AD,Teleconsultation is Done (Yes/No/Not required),Medical Officer (MO)
+AE,"Rx advice including vaccine, drug",Medical Officer (MO)
+AF,Patient Referred ( Yes/No),Medical Officer (MO)
+AG,Name of the referral facility,Medical Officer (MO)
+AH,Reported in IDSP- IHIP (Yes/No),Medical Officer (MO)
+AI,"Remarks (Referral/Teleconsultation/Follow- up, etc)",Medical Officer (MO)
+AJ,Consultation Ending time,Medical Officer (MO)
+AK,Consultant Name (Doctor),Medical Officer (MO)

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure HWC-OPD Register 2025-26</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="medical-icon">🏥</div>
+                <h1>Secure HWC-OPD Register</h1>
+                <h2>2025-26</h2>
+                <p>Health & Wellness Center - Outpatient Department</p>
+            </div>
+            
+            <div class="login-form-container">
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label class="form-label">User ID</label>
+                        <input type="text" id="userId" class="form-control" placeholder="Enter User ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+                        </div>
+                    </div>
+                    <div id="loginError" class="login-error hidden"></div>
+                    <button type="submit" class="btn btn--primary btn--full-width login-btn">
+                        <span id="loginText">Login</span>
+                        <span id="loginLoader" class="loading hidden"></span>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="login-footer">
+                <p>© 2025 Health & Wellness Center</p>
+                <p>Secure Medical Information System</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application (Hidden until login) -->
+    <div id="mainApp" class="main-app hidden">
+        <div class="container">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>Secure HWC-OPD Register 2025-26</h1>
+                        <div class="user-info">
+                            <span class="security-icon">🔒</span>
+                            <span>User: <strong>NONGALBIBRA</strong></span>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-datetime">
+                            <div id="currentDate"></div>
+                            <div id="currentTime"></div>
+                        </div>
+                        <button type="button" class="btn btn--secondary logout-btn" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Role Selection -->
+            <div class="role-selection">
+                <div class="role-selector">
+                    <label class="form-label">Select Role:</label>
+                    <select id="roleSelect" class="form-control role-dropdown">
+                        <option value="">Choose Your Role</option>
+                        <option value="Receptionist">Receptionist</option>
+                        <option value="Staff Nurse">Staff Nurse</option>
+                        <option value="Medical Officer">Medical Officer</option>
+                    </select>
+                </div>
+                <div id="roleIndicator" class="role-indicator hidden">
+                    <span id="roleText"></span>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="tab-navigation">
+                <button type="button" class="tab-btn active" data-tab="registration">New Entry</button>
+                <button type="button" class="tab-btn" data-tab="records">View Records</button>
+                <button type="button" class="tab-btn" data-tab="export">Export Data</button>
+            </nav>
+
+            <!-- New Registration Tab -->
+            <div id="registrationTab" class="tab-content active">
+                <form id="opdForm" class="opd-form">
+                    <!-- Section 1: Basic Registration Details (Receptionist) -->
+                    <section class="form-section receptionist-section" data-role="Receptionist">
+                        <h3>Basic Registration Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Date (DD/MM/YY)</label>
+                                <input type="text" id="date" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Time of Registration</label>
+                                <input type="text" id="timeRegistration" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Sl No</label>
+                                <input type="number" id="slNo" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">OPD Registration Number</label>
+                                <input type="number" id="opdNumber" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Patient ABHA ID number</label>
+                                <input type="text" id="abhaId" class="form-control" placeholder="Optional">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Name of the head of the family</label>
+                                <input type="text" id="familyHead" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Name of the patient *</label>
+                                <input type="text" id="patientName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Date of birth</label>
+                                <input type="date" id="dob" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Age</label>
+                                <input type="number" id="age" class="form-control" min="0" max="150">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Gender</label>
+                                <select id="gender" class="form-control">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Address: Village/Locality</label>
+                                <input type="text" id="address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Contact Number</label>
+                                <input type="tel" id="contact" class="form-control" pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: Medical Information (Staff Nurse) -->
+                    <section class="form-section nurse-section" data-role="Staff Nurse">
+                        <h3>Patient Examination & Screening</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label class="form-label">Chief complaints</label>
+                                <textarea id="complaints" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Provisional diagnosis</label>
+                                <textarea id="diagnosis" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Date of onset of Illness</label>
+                                <input type="text" id="onsetDate" class="form-control" placeholder="e.g., 3 days ago">
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Service Availed</label>
+                                <select id="serviceAvailed" class="form-control">
+                                    <option value="">Select Service</option>
+                                    <option value="1-Care in Pregnancy & Child birth">1-Care in Pregnancy & Child birth</option>
+                                    <option value="2-Neonatal & Infant Health">2-Neonatal & Infant Health</option>
+                                    <option value="3-Childhood & Adolescent Health">3-Childhood & Adolescent Health</option>
+                                    <option value="4-Family Planning & other RCH">4-Family Planning & other RCH</option>
+                                    <option value="5-General Outpatient Care: acute Simple illness">5-General Outpatient Care: acute Simple illness</option>
+                                    <option value="6-Communicable diseases: National Health programms">6-Communicable diseases: National Health programms</option>
+                                    <option value="7-Non-Communicable Diseases">7-Non-Communicable Diseases</option>
+                                    <option value="8a-Ophthalmic problems">8a-Ophthalmic problems</option>
+                                    <option value="8b-ENT Problems">8b-ENT Problems</option>
+                                    <option value="9-Oral Health">9-Oral Health</option>
+                                    <option value="10-Elderly & Palliative Health">10-Elderly & Palliative Health</option>
+                                    <option value="11-Emergency Medical Services">11-Emergency Medical Services</option>
+                                    <option value="12-Mental Health">12-Mental Health</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Height (cm)</label>
+                                <input type="number" id="height" class="form-control" min="0" max="300" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Weight (kg)</label>
+                                <input type="number" id="weight" class="form-control" min="0" max="500" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Blood Pressure</label>
+                                <input type="text" id="bloodPressure" class="form-control" placeholder="120/80">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Blood Sugar</label>
+                                <input type="number" id="bloodSugar" class="form-control" min="0" max="1000">
+                            </div>
+                        </div>
+                        
+                        <div class="screening-section">
+                            <h4>Cancer Screening</h4>
+                            <div class="screening-grid">
+                                <div class="screening-item">
+                                    <label class="form-label">Breast Cancer</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="breastCancer" value="Screened"> Screened</label>
+                                        <label><input type="radio" name="breastCancer" value="Not Screened"> Not Screened</label>
+                                    </div>
+                                </div>
+                                <div class="screening-item">
+                                    <label class="form-label">Cervical Cancer</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="cervicalCancer" value="Screened"> Screened</label>
+                                        <label><input type="radio" name="cervicalCancer" value="Not Screened"> Not Screened</label>
+                                    </div>
+                                </div>
+                                <div class="screening-item">
+                                    <label class="form-label">Oral Cancer</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="oralCancer" value="Screened"> Screened</label>
+                                        <label><input type="radio" name="oralCancer" value="Not Screened"> Not Screened</label>
+                                    </div>
+                                </div>
+                                <div class="screening-item">
+                                    <label class="form-label">TB Symptomatic Screening</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="tbScreening" value="Screened"> Screened</label>
+                                        <label><input type="radio" name="tbScreening" value="Not Screened"> Not Screened</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 3: Diagnostic Services & Treatment (Medical Officer) -->
+                    <section class="form-section officer-section" data-role="Medical Officer">
+                        <h3>Diagnosis & Treatment</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Any diagnostic tests advised</label>
+                                <select id="testsAdvised" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Test conducted</label>
+                                <select id="testConducted" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="In-House">In-House</option>
+                                    <option value="Referred">Referred</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Type of sample collected</label>
+                                <input type="text" id="sampleType" class="form-control">
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Findings/Investigation</label>
+                                <textarea id="findings" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Consultation Starting time</label>
+                                <input type="time" id="consultationStart" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Teleconsultation Done</label>
+                                <select id="teleconsultation" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="Not required">Not required</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Rx advice including vaccine, drug</label>
+                                <textarea id="rxAdvice" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Patient Referred</label>
+                                <select id="patientReferred" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Name of referral facility</label>
+                                <input type="text" id="referralFacility" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Reported in IDSP-IHIP</label>
+                                <select id="idspReport" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Remarks</label>
+                                <textarea id="remarks" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Consultation Ending time</label>
+                                <input type="time" id="consultationEnd" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Consultant Name</label>
+                                <input type="text" id="consultantName" class="form-control" value="Dr L D Sangma">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Form Actions - Always Visible -->
+                    <div class="form-actions" id="formActions">
+                        <button type="submit" class="btn btn--primary" id="saveBtn">Save Registration</button>
+                        <button type="button" class="btn btn--secondary" id="clearBtn">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- View Records Tab -->
+            <div id="recordsTab" class="tab-content">
+                <div class="records-header">
+                    <h3>Patient Records</h3>
+                    <div class="records-actions">
+                        <input type="text" id="searchInput" placeholder="Search by patient name..." class="form-control search-input">
+                        <input type="date" id="dateFilter" class="form-control date-filter">
+                        <button type="button" class="btn btn--secondary" id="clearFiltersBtn">Clear Filters</button>
+                    </div>
+                </div>
+                
+                <div class="records-table-container">
+                    <table id="recordsTable" class="records-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sl No</th>
+                                <th>OPD No</th>
+                                <th>Patient Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Contact</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsTableBody">
+                            <!-- Records will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Export Data Tab -->
+            <div id="exportTab" class="tab-content">
+                <div class="export-section">
+                    <h3>Export Data</h3>
+                    <div class="export-options">
+                        <div class="export-card">
+                            <h4>CSV Export</h4>
+                            <p>Export all patient records to CSV format for spreadsheet applications.</p>
+                            <button type="button" class="btn btn--primary" id="exportCsvBtn">Export to CSV</button>
+                        </div>
+                        <div class="export-stats">
+                            <h4>Data Summary</h4>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-number" id="totalRecords">0</span>
+                                    <span class="stat-label">Total Records</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number" id="todayRecords">0</span>
+                                    <span class="stat-label">Today's Records</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
