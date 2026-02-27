@@ -22,13 +22,13 @@ const ROLE_PERMISSIONS = {
         sectionClass: "receptionist-section"
     },
     "Staff Nurse": {
-        canEdit: ["complaints", "diagnosis", "onsetDate", "serviceAvailed", "height", "weight", "bloodPressure", "bloodSugar", "breastCancer", "cervicalCancer", "oralCancer", "tbScreening"],
+        canEdit: ["serviceAvailed", "height", "weight", "bloodPressure", "bloodSugar", "breastCancer", "cervicalCancer", "oralCancer", "tbScreening"],
         requiredFields: [],
         statusUpdate: "Examination", 
         sectionClass: "nurse-section"
     },
     "Medical Officer": {
-        canEdit: ["testsAdvised", "testConducted", "sampleType", "findings", "consultationStart", "teleconsultation", "rxAdvice", "patientReferred", "referralFacility", "idspReport", "remarks", "consultationEnd", "consultantName"],
+        canEdit: ["complaints", "diagnosis", "onsetDate", "testsAdvised", "testConducted", "sampleType", "findings", "consultationStart", "teleconsultation", "rxAdvice", "patientReferred", "referralFacility", "idspReport", "remarks", "consultationEnd", "consultantName"],
         requiredFields: [],
         statusUpdate: "Complete",
         sectionClass: "officer-section"
